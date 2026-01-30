@@ -1,9 +1,17 @@
+import { useState } from "react";
+import { GifList } from "./gifs/components/GifList";
 import { PreviousSearches } from "./gifs/components/PreviousSearches";
 import { mockGifs } from "./mock-data/gifs.mock";
 import { CustomHeader } from "./shared/components/CustomHeader";
 import { SearchBar } from "./shared/components/SearchBar";
 
 export const GifsApp = () => {
+  const [PreviousTerms, setPreviousTerms] = useState(["diseño"]);
+
+  const handleTermClicked = (term: string) => {
+    console.log({ term });
+  };
+
   return (
     <>
       {/* Header */}
@@ -15,21 +23,14 @@ export const GifsApp = () => {
 
       {/* Busquedas previas */}
 
-      <PreviousSearches />
+      <PreviousSearches
+        searches={PreviousTerms}
+        onLabelClicked={handleTermClicked}
+      />
 
       {/* GIFS */}
 
-      <div className="gifs-container">
-        {mockGifs.map((gif) => (
-          <div key={gif.id} className="gif-card">
-            <img src={gif.url} alt={gif.title} />
-            <h3>{gif.title}</h3>
-            <p>
-              {gif.width}x{gif.height} (1.5mb)
-            </p>
-          </div>
-        ))}
-      </div>
+      <GifList gifs={mockGifs} />
     </>
   );
 };
