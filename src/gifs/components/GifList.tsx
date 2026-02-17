@@ -4,7 +4,7 @@ import type { Gif } from "../interfaces/gif.interface";
 interface Props {
   gifs: Gif[];
 }
-
+//gifs
 export const GifList: FC<Props> = ({ gifs }: Props) => {
   return (
     <div className="gifs-container">
