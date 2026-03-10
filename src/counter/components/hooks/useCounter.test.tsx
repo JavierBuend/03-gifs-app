@@ -27,3 +27,23 @@ describe("useCounter", () => {
     expect(result.current.counter).toBe(11);
   });
 });
+
+test("should decrement counter when handleAdd is called", () => {
+  const { result } = renderHook(() => useCounter());
+
+  act(() => {
+    result.current.handleSubstract();
+  });
+
+  expect(result.current.counter).toBe(9);
+});
+
+test("should reset to initialValue the counter when handleAdd is called", () => {
+  const { result } = renderHook(() => useCounter());
+
+  act(() => {
+    result.current.handleReset();
+  });
+
+  expect(result.current.counter).toBe(10);
+});
